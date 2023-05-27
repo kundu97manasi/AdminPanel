@@ -29,34 +29,32 @@ fetch(url)
   })
 
   .then(function (data) {
-    let id = document.querySelectorAll('.column1');
-let firstName = document.querySelectorAll('.column2');
-let lastName = document.querySelectorAll('.column3');
-let email = document.querySelectorAll('.column4');
-let phone = document.querySelectorAll('.column5');
+    let id = document.querySelectorAll(".column1");
+    let firstName = document.querySelectorAll(".column2");
+    let lastName = document.querySelectorAll(".column3");
+    let email = document.querySelectorAll(".column4");
+    let phone = document.querySelectorAll(".column5");
 
-
-for (let i = 1; i < id.length; i++) {
-  id[i].innerHTML = data[i].id
-  firstName[i].innerHTML = data[i].firstName
-  lastName[i].innerHTML = data[i].lastName
-  email[i].innerHTML = data[i].email
-  phone[i].innerHTML = data[i].phone
-};
+    for (let i = 1; i < id.length; i++) {
+      id[i].innerHTML = data[i].id;
+      firstName[i].innerHTML = data[i].firstName;
+      lastName[i].innerHTML = data[i].lastName;
+      email[i].innerHTML = data[i].email;
+      phone[i].innerHTML = data[i].phone;
+    }
     let infoContent = document.querySelector("#info-content");
     let tr = document.querySelectorAll("tr");
     tr.forEach((element) => {
       element.addEventListener("click", function () {
         tr.forEach((tr) => tr.classList.remove("active"));
         this.classList.add("active");
-        infoContent.style.display = 'block'
+        infoContent.style.display = "block";
 
-        if(element.className.includes('active')){
-            let dataName = element.childNodes[3].innerHTML;
-            data.forEach((val,index)=>{
-               
-              if(val.firstName == dataName){
-                infoContent.innerHTML = `
+        if (element.className.includes("active")) {
+          let dataName = element.childNodes[3].innerHTML;
+          data.forEach((val, index) => {
+            if (val.firstName == dataName) {
+              infoContent.innerHTML = `
                 <div><b>User selected:</b> ${data[index].firstName} ${data[index].lastName}</div>
                 <div>
                     <b>Description: </b>
@@ -68,9 +66,9 @@ for (let i = 1; i < id.length; i++) {
                 <div><b>City:</b> ${data[index].address.city}</div>
                 <div><b>State:</b> ${data[index].address.state}</div>
                 <div><b>Zip:</b>${data[index].address.zip}</div>
-                `
-              }
-            })
+                `;
+            }
+          });
         }
       });
     });
